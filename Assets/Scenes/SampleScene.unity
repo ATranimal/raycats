@@ -468,9 +468,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d786fa87ce51b44458d013000b09f421, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTarget: {fileID: 0}
-  player: {fileID: 0}
-  damping: 500
+  cameraTarget: {fileID: 1125989115}
+  player: {fileID: 1130476380}
 --- !u!1 &664142200
 GameObject:
   m_ObjectHideFlags: 0
@@ -1786,9 +1785,9 @@ MonoBehaviour:
   dontDestroyMeshOnDelete: 0
   m_selectedFaces: 
   m_SelectedEdges:
-  - x: 78
-    y: 79
-  m_selectedTriangles: 4e0000004f000000
+  - x: 31
+    y: 29
+  m_selectedTriangles: 1f0000001d000000
 --- !u!33 &711565581
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2718,7 +2717,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-19080
+  m_Name: pb_Mesh11430
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2
@@ -2878,7 +2877,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh11436
+  m_Name: pb_Mesh11444
   serializedVersion: 9
   m_SubMeshes:
   - serializedVersion: 2

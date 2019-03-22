@@ -5,11 +5,15 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour {
     public GameObject cameraTarget;
     public GameObject player;
-    public float damping = 1;
-    Vector3 offset;
+
+    Vector3 defaultCameraOffset;
+    Vector3 defaultCameraTargetOffset;
+    float defaultDistance;
 
     void Start() {
-        offset = cameraTarget.transform.position - transform.position;
+        defaultCameraOffset = player.transform.position - transform.position;
+        defaultCameraTargetOffset = player.transform.position - cameraTarget.transform.position;
+        defaultDistance = Vector3.Distance(player.transform.position, transform.position);
     }
 
     void LateUpdate() {
@@ -19,19 +23,25 @@ public class FollowCamera : MonoBehaviour {
     }
 
     void setPosition() {
+        // Check if raycast hits from where the camera should be to the player position
         Vector3 playerPos = player.transform.position;
-        Vector3 cameraPos = transform.position;
+        Quaternion playerRotation = Quaternion.Euler(0, player.transform.eulerAngles.y, 0);
+        Vector3 expectedCameraPos = player.transform.position - (playerRotation * defaultCameraOffset);
         RaycastHit hit = new RaycastHit();
-        if (Physics.Linecast(playerPos, cameraPos, out hit)) {
 
+        // Set camera position depending on obscurity
+        if (Physics.Linecast(playerPos, expectedCameraPos, out hit)) {
+            transform.position = hit.point;
         }
         else {
-            float currentAngle = transform.eulerAngles.y;
-            float desiredAngle = cameraTarget.transform.eulerAngles.y;
-            float angle = Mathf.LerpAngle(currentAngle, desiredAngle, Time.deltaTime * damping);
-
-            Quaternion rotation = Quaternion.Euler(0, angle, 0);
-            transform.position = cameraTarget.transform.position - (rotation * offset);
+            transform.position = expectedCameraPos;
         }
+
+        // Set camera target height
+        float distanceRatio = Vector3.Distance(playerPos, transform.position) / defaultDistance;
+        Vector3 heightChange = new Vector3(0, distanceRatio - 1, 0);
+        Vector3 modifiedCameraTargetHeight = player.transform.position - defaultCameraTargetOffset + heightChange;
+        cameraTarget.transform.position = modifiedCameraTargetHeight;
     }
+
 }

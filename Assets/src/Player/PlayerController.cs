@@ -10,14 +10,14 @@ public class PlayerController : MonoBehaviour
     public Rigidbody rb;
 
     private int movementSpeed;
-    private int turnSpeed;
+    // private int turnSpeed;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
 
         movementSpeed = 50;
-        turnSpeed = 1;
+        // turnSpeed = 1;
     }
 
     void Update()
@@ -44,7 +44,6 @@ public class PlayerController : MonoBehaviour
     }
 
     void rotatePlayer(float amount) {
-        print(amount);
         this.transform.Rotate(Vector3.up, amount);
     }
 
