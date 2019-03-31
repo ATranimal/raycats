@@ -8,46 +8,89 @@ public enum Inputs {
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody rb;
+    public Animator anim;
+    public SpriteRenderer rend;
+    
 
     private int movementSpeed;
-    // private int turnSpeed;
+
+    // Input Values
+    private float verticalValue;
+    private float horizontalValue;
+    private float cameraRotateValue;
+
+    bool isFacingRight;
+
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
+        rend = GetComponent<SpriteRenderer>();
 
         movementSpeed = 50;
-        // turnSpeed = 1;
+
+        isFacingRight = true;
     }
 
     void Update()
     {
-        mapInputs();
+        setValues();
+        handleMovement();
+        handleAnimation();
+
+        dragMovement();
     }
 
-    void mapInputs() {
-        if (Input.GetAxis("Vertical") != 0) {
-            addForceInDirection(movementSpeed, Vector3.back * Input.GetAxis("Vertical"));
+    void setValues() {
+        verticalValue = Input.GetAxis("Vertical");
+        horizontalValue = Input.GetAxis("Horizontal");
+        cameraRotateValue = Input.GetAxis("CameraRotate");
+    }
+
+    private void handleMovement() {
+        if (verticalValue != 0) {
+            addForceInDirection(movementSpeed, Vector3.back * verticalValue);
         }
-        if (Input.GetAxis("Horizontal") != 0) {
-            addForceInDirection(movementSpeed, Vector3.right * Input.GetAxis("Horizontal"));
+        if (horizontalValue != 0) {
+            addForceInDirection(movementSpeed, Vector3.right * horizontalValue);
         }
-        if (Input.GetAxis("CameraRotate") != 0) {
+        if (cameraRotateValue != 0) {
             rotatePlayer(Input.GetAxis("CameraRotate"));
         }
-
-        noInput();
     }
 
-    void addForceInDirection(int amount, Vector3 direction) {
+    private void handleAnimation() {
+        // Animator Parameters
+        float animVelocity = Mathf.Abs(verticalValue) + Mathf.Abs(horizontalValue);
+        anim.SetFloat("Velocity", animVelocity);
+        
+        bool currentFacingBackwards = anim.GetBool("FacingBackwards");
+        if (currentFacingBackwards && verticalValue > 0.1) {
+            anim.SetBool("FacingBackwards", false);
+        }
+        else if (!currentFacingBackwards && verticalValue < -0.1) {
+            anim.SetBool("FacingBackwards", true);
+        }
+
+        // Flipping X of sprite renderer
+        if (horizontalValue > 0.1) {
+            rend.flipX = false;
+        }
+        else if (horizontalValue < -0.1) {
+            rend.flipX = true;
+        }
+    }
+
+    private void addForceInDirection(int amount, Vector3 direction) {
         rb.AddRelativeForce(direction * amount);
     }
 
-    void rotatePlayer(float amount) {
+    private void rotatePlayer(float amount) {
         this.transform.Rotate(Vector3.up, amount);
     }
 
-    void noInput() {
+    private void dragMovement() {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
