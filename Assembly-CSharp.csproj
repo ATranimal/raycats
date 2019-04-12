@@ -69,6 +69,8 @@
      <Compile Include="Assets\src\Camera\FollowCamera.cs" />
      <Compile Include="Assets\src\Player\PlayerController.cs" />
      <Compile Include="Assets\src\Shared\Billboard.cs" />
+     <Compile Include="Assets\src\Shared\UI\Dialogue\DialogueBox.cs" />
+     <Compile Include="Assets\src\Shared\UI\Dialogue\Emoji.cs" />
      <None Include="Assets\ProCore\ProGrids\Shader\pg_GridShader.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_TransparentOverlay.shader" />
      <None Include="Assets\ProCore\ProBuilder\API Examples\Icosphere FFT\README.txt" />
@@ -90,6 +92,7 @@
      <None Include="Assets\ProCore\ProBuilder\About\Font\SIL Open Font License.txt" />
      <None Include="Assets\ProCore\ProBuilder\About\pc_AboutEntry_ProBuilder.txt" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_VertexShader.shader" />
+     <None Include="Assets\Resources\Dialogue\Test\test.txt" />
      <None Include="Assets\ProCore\ProGrids\About\changelog.txt" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_NormalPreview.shader" />
      <None Include="Assets\ProCore\ProBuilder\Shader\pb_ScrollHighlight.shader" />

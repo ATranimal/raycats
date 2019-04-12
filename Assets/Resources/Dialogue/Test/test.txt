@@ -1,0 +1,8 @@
+0.2
+cole_happy
+monty_happy
+raccoon_happy
+2
+cole_sad
+monty_sad
+raccoon_sad
