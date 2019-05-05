@@ -69,6 +69,7 @@
      <Compile Include="Assets\src\Camera\FollowCamera.cs" />
      <Compile Include="Assets\src\Player\PlayerController.cs" />
      <Compile Include="Assets\src\Shared\Billboard.cs" />
+     <Compile Include="Assets\src\Shared\NPC\NPCInteraction.cs" />
      <Compile Include="Assets\src\Shared\UI\Dialogue\DialogueBox.cs" />
      <Compile Include="Assets\src\Shared\UI\Dialogue\Emoji.cs" />
      <None Include="Assets\ProCore\ProGrids\Shader\pg_GridShader.shader" />

@@ -40,9 +40,14 @@ public class PlayerController : MonoBehaviour
         handleAnimation();
 
         dragMovement();
+
     }
 
-    void setValues() {
+    void onTriggerStay(Collider other) {
+        print("triggered");
+    }
+
+    private void setValues() {
         verticalValue = Input.GetAxis("Vertical");
         horizontalValue = Input.GetAxis("Horizontal");
         cameraRotateValue = Input.GetAxis("CameraRotate");

@@ -10,8 +10,8 @@ public class DialogueBox : MonoBehaviour
     public GameObject emojiPrefab;
 
     TextAsset text;
-    string pathToText = "Dialogue/Test/test";  
-
+    string pathToText;
+    
     string[] parsedDialogue;
 
     float counter;
@@ -19,17 +19,11 @@ public class DialogueBox : MonoBehaviour
     int emojiCount;
     float currentSpeed;
     
-    void Start()
+    public void Initialize(string pathToText)
     {  
-        parseDialogue();
         emojiCount = 0;
-
-        try {  
-            currentSpeed = float.Parse(parsedDialogue[0]);
-            index = 1;
-        } catch {
-            Debug.LogError("text file " + pathToText + " does not start with a float");
-        }
+        this.setPathToText(pathToText);
+        this.parseDialogue();
     }
 
     void Update()
@@ -56,12 +50,30 @@ public class DialogueBox : MonoBehaviour
         counter += Time.deltaTime;
     }
 
+    private void setPathToText(string pathToText) {
+        this.pathToText = pathToText;
+    }
+
     private void parseDialogue() {
         text = Resources.Load<TextAsset>(pathToText);
-        parsedDialogue = text.text.Split(
-            new string[] { "\r\n", "\n"},
-            StringSplitOptions.None
-        );
+        try {
+            parsedDialogue = text.text.Split(
+                new string[] { "\r\n", "\n"},
+                StringSplitOptions.None
+            );
+        } catch {
+            Debug.LogError("No path to text given");
+            GameObject.Destroy(this);
+        }
+    }
+
+    private void setInitialSpeed() {
+        try {
+            currentSpeed = float.Parse(parsedDialogue[0]);
+            index = 1;
+        } catch {
+            Debug.LogError("text file " + pathToText + " does not start with a float");
+        }
     }
 
     private void createEmoji(string nameOfEmoji) {

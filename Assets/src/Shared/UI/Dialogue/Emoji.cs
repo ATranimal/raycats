@@ -16,7 +16,6 @@ public class Emoji : MonoBehaviour
             pathToimage += "/" + splitPaths[index];
         }
 
-        print(pathToimage);
         img.sprite = Resources.Load<Sprite>(pathToimage);
     }
 
