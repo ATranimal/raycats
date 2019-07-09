@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class NPCInteraction : MonoBehaviour
 {
+    // Public Variables
     public GameObject dialogueBoxPrefab;
     public string dialoguePath;
 
@@ -13,15 +14,13 @@ public class NPCInteraction : MonoBehaviour
         }
     }
     public void interaction() {
-        Vector3 dialogueBoxPosition = Camera.main.WorldToScreenPoint(this.transform.position);
-        print(dialogueBoxPosition);
         GameObject newDialogueBox = Instantiate(
             dialogueBoxPrefab,
-            dialogueBoxPosition,
+            new Vector3(0, 1, 0),
             Quaternion.Euler(0, 0, 0)
         );
 
-        newDialogueBox.transform.SetParent(GameObject.Find("Canvas").transform, false);
-        newDialogueBox.GetComponent<DialogueBox>().Initialize(dialoguePath);
+        newDialogueBox.transform.SetParent(this.transform, false);
+        newDialogueBox.GetComponent<DialogueBox>().Initialize(dialoguePath, this.gameObject);
     }
 }

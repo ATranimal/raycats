@@ -7,14 +7,15 @@ public enum Inputs {
 }
 public class PlayerController : MonoBehaviour
 {
+    // Public Variables
     public Rigidbody rb;
     public Animator anim;
     public SpriteRenderer rend;
     
-
+    // Private Variables
     private int movementSpeed;
 
-    // Input Values
+    // Operation Variables
     private float verticalValue;
     private float horizontalValue;
     private float cameraRotateValue;

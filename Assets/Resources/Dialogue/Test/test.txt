@@ -1,8 +1,8 @@
-0.2
-cole_happy
-monty_happy
-raccoon_happy
-2
-cole_sad
-monty_sad
-raccoon_sad
+0.4
+cat_happy
+cat_happy
+cat_happy
+1.6
+cat_sad
+cat_sad
+cat_sad
