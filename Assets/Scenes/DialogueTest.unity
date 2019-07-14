@@ -198,11 +198,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    - target: {fileID: 6442964836762335783, guid: 24419e9e06d5c20479fe3c51c6a80474,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 6442964836762335782, guid: 24419e9e06d5c20479fe3c51c6a80474,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -257,41 +252,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442964836762335771, guid: 24419e9e06d5c20479fe3c51c6a80474,
-        type: 3}
-      propertyPath: m_Mass
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442964836762335771, guid: 24419e9e06d5c20479fe3c51c6a80474,
-        type: 3}
-      propertyPath: m_Drag
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442964836762335771, guid: 24419e9e06d5c20479fe3c51c6a80474,
-        type: 3}
-      propertyPath: m_Constraints
-      value: 80
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442964836762335771, guid: 24419e9e06d5c20479fe3c51c6a80474,
-        type: 3}
-      propertyPath: m_AngularDrag
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442964836762335770, guid: 24419e9e06d5c20479fe3c51c6a80474,
-        type: 3}
-      propertyPath: jumpAmount
-      value: 4000
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442964836762335770, guid: 24419e9e06d5c20479fe3c51c6a80474,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6442964836762335770, guid: 24419e9e06d5c20479fe3c51c6a80474,
-        type: 3}
-      propertyPath: movementSpeed
-      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24419e9e06d5c20479fe3c51c6a80474, type: 3}

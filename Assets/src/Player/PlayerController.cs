@@ -17,9 +17,9 @@ public class PlayerController : MonoBehaviour
     /* 
      * Private Variables
      */
-    public int movementSpeed = 100;
-    public int jumpAmount = 500;
-    float maxMoveSpeed = 1.5f;
+    private int movementSpeed = 200;
+    private int jumpAmount = 5000;
+    private float maxMoveSpeed = 1.5f;
 
     /* 
      * Operation Variables
@@ -102,10 +102,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void dampMovement() {
-        if (rb.velocity.x < -1.5f) rb.velocity = new Vector3(-1.5f, rb.velocity.y, rb.velocity.z);
-        if (rb.velocity.x > 1.5f) rb.velocity = new Vector3(1.5f, rb.velocity.y, rb.velocity.z);
-        if (rb.velocity.z < -1.5f) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, -1.5f);
-        if (rb.velocity.z > 1.5f) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 1.5f);
+        if (rb.velocity.x < -maxMoveSpeed) rb.velocity = new Vector3(-maxMoveSpeed, rb.velocity.y, rb.velocity.z);
+        if (rb.velocity.x > maxMoveSpeed) rb.velocity = new Vector3(maxMoveSpeed, rb.velocity.y, rb.velocity.z);
+        if (rb.velocity.z < -maxMoveSpeed) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, -maxMoveSpeed);
+        if (rb.velocity.z > maxMoveSpeed) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, maxMoveSpeed);
     }
 
     private void jumpPlayer() {
