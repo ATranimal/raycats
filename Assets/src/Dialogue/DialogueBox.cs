@@ -110,7 +110,7 @@ public class DialogueBox : MonoBehaviour
         float yOffset = (this.numberOfLines - 1) * 0.25f;
         float emojiY = yOffset - ((emojiCount / this.maxEmojisPerLine) * 0.5f);
 
-        Vector3 newPosition = new Vector3(emojiX, emojiY, 0.2f);
+        Vector3 newPosition = new Vector3(emojiX, emojiY, 0.5f);
 
         GameObject newEmoji = Instantiate(
             emojiPrefab,
