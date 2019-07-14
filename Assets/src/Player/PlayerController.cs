@@ -7,18 +7,29 @@ public enum Inputs {
 }
 public class PlayerController : MonoBehaviour
 {
-    // Public Variables
+    /* 
+     * Public Variables
+     */
     public Rigidbody rb;
     public Animator anim;
     public SpriteRenderer rend;
     
-    // Private Variables
-    private int movementSpeed;
+    /* 
+     * Private Variables
+     */
+    public int movementSpeed = 100;
+    public int jumpAmount = 500;
+    float maxMoveSpeed = 1.5f;
 
-    // Operation Variables
+    /* 
+     * Operation Variables
+     */
     private float verticalValue;
     private float horizontalValue;
     private float cameraRotateValue;
+    private bool jumpValue;
+    private bool crouchValue;
+
 
     bool isFacingRight;
 
@@ -29,41 +40,35 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         rend = GetComponent<SpriteRenderer>();
 
-        movementSpeed = 50;
-
         isFacingRight = true;
     }
 
     void Update()
     {
-        setValues();
+        setInputValues();
         handleMovement();
         handleAnimation();
 
-        dragMovement();
-
+        dampMovement();
     }
 
     void onTriggerStay(Collider other) {
         print("triggered");
     }
 
-    private void setValues() {
+    private void setInputValues() {
         verticalValue = Input.GetAxis("Vertical");
         horizontalValue = Input.GetAxis("Horizontal");
         cameraRotateValue = Input.GetAxis("CameraRotate");
+        jumpValue = Input.GetButtonDown("Jump");
+        crouchValue = Input.GetButton("Crouch");
     }
 
     private void handleMovement() {
-        if (verticalValue != 0) {
-            addForceInDirection(movementSpeed, Vector3.back * verticalValue);
-        }
-        if (horizontalValue != 0) {
-            addForceInDirection(movementSpeed, Vector3.right * horizontalValue);
-        }
-        if (cameraRotateValue != 0) {
-            rotatePlayer(Input.GetAxis("CameraRotate"));
-        }
+        if (verticalValue != 0) addForceInDirection(movementSpeed, Vector3.back * verticalValue);
+        if (horizontalValue != 0) addForceInDirection(movementSpeed, Vector3.right * horizontalValue);
+        if (cameraRotateValue != 0) rotatePlayer(Input.GetAxis("CameraRotate"));
+        if (jumpValue) jumpPlayer();
     }
 
     private void handleAnimation() {
@@ -96,8 +101,14 @@ public class PlayerController : MonoBehaviour
         this.transform.Rotate(Vector3.up, amount);
     }
 
-    private void dragMovement() {
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+    private void dampMovement() {
+        if (rb.velocity.x < -1.5f) rb.velocity = new Vector3(-1.5f, rb.velocity.y, rb.velocity.z);
+        if (rb.velocity.x > 1.5f) rb.velocity = new Vector3(1.5f, rb.velocity.y, rb.velocity.z);
+        if (rb.velocity.z < -1.5f) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, -1.5f);
+        if (rb.velocity.z > 1.5f) rb.velocity = new Vector3(rb.velocity.x, rb.velocity.y, 1.5f);
+    }
+
+    private void jumpPlayer() {
+        addForceInDirection(jumpAmount, Vector3.up);
     }
 }

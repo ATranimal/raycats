@@ -5,12 +5,15 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour {
     public GameObject cameraTarget;
     public GameObject player;
+    public Camera mainCamera;
 
     Vector3 defaultCameraOffset;
     Vector3 defaultCameraTargetOffset;
     float defaultDistance;
 
     void Start() {
+        mainCamera = GetComponent<Camera>();
+        mainCamera.transparencySortMode = TransparencySortMode.Orthographic;
         defaultCameraOffset = player.transform.position - transform.position;
         defaultCameraTargetOffset = player.transform.position - cameraTarget.transform.position;
         defaultDistance = Vector3.Distance(player.transform.position, transform.position);

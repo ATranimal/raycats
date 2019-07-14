@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{F5C7995F-95C9-55FE-1F22-ECE25D7545BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "raycats", "raycats.csproj", "{65E5048A-598A-4B84-ABEC-B76F72D3F434}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{F5C7995F-95C9-55FE-1F22-ECE25D7545BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F5C7995F-95C9-55FE-1F22-ECE25D7545BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F5C7995F-95C9-55FE-1F22-ECE25D7545BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F5C7995F-95C9-55FE-1F22-ECE25D7545BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65E5048A-598A-4B84-ABEC-B76F72D3F434}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65E5048A-598A-4B84-ABEC-B76F72D3F434}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65E5048A-598A-4B84-ABEC-B76F72D3F434}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65E5048A-598A-4B84-ABEC-B76F72D3F434}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal

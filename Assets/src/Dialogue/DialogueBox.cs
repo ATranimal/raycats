@@ -29,16 +29,22 @@ public class DialogueBox : MonoBehaviour
     string[] parsedDialogue;
     // emojiCount: used to determine emojiCount for position in box
     // *note differs from index because doesn't include speed changes
-    int emojiCount;
+    int emojiCount = 0;
     // totalNumberOfEmoji: how many emoji are in the current dialogue, for calculating size
     int totalNumberOfEmoji;
+    // maxEmojiPerLine: the width of the dialogue box in Emojis
+    int maxEmojisPerLine = 5;
+    // numberOfLines: the amount of lines in dialogue;
+    int numberOfLines;
 
     public void Initialize(string pathToText, GameObject speaker)
     {
         emojiCount = 0;
         this.speaker = speaker;
         this.pathToText = pathToText;
+
         this.parseDialogue();
+        this.numberOfLines = (this.totalNumberOfEmoji - 1) / this.maxEmojisPerLine + 1;
         this.setDialogueBoxSize();
     }
 
@@ -62,13 +68,14 @@ public class DialogueBox : MonoBehaviour
         }
     }
 
+    // setDialogueBoxSize(): set dialogue box size
     private void setDialogueBoxSize() {
         SpriteRenderer rend = GetComponent<SpriteRenderer>();
-        float dialogueBoxWidth = this.totalNumberOfEmoji > 6
-            ? 6
+        float dialogueBoxWidth = this.totalNumberOfEmoji > this.maxEmojisPerLine
+            ? this.maxEmojisPerLine
             : this.totalNumberOfEmoji;
-        float dialogueBoxHeight = (this.totalNumberOfEmoji - 1) / 6 + 1;
-        rend.size = new Vector2(dialogueBoxWidth * 0.64f, dialogueBoxHeight * 0.64f);
+        float dialogueBoxHeight = this.numberOfLines;
+        rend.size = new Vector2(dialogueBoxWidth * 0.55f, dialogueBoxHeight * 0.64f);
     }
 
     void Update()
@@ -97,8 +104,13 @@ public class DialogueBox : MonoBehaviour
     }
 
     private void createEmoji(string nameOfEmoji) {
-        // Set position! 
-        Vector3 newPosition = new Vector3(emojiCount * -0.5f, 0, 0.2f);
+        float xOffset = (this.maxEmojisPerLine / 2) * 0.5f - (((this.maxEmojisPerLine + 1) % 2) * 0.25f);
+        float emojiX = ((emojiCount % this.maxEmojisPerLine) * -0.5f) + xOffset;
+
+        float yOffset = (this.numberOfLines - 1) * 0.25f;
+        float emojiY = yOffset - ((emojiCount / this.maxEmojisPerLine) * 0.5f);
+
+        Vector3 newPosition = new Vector3(emojiX, emojiY, 0.2f);
 
         GameObject newEmoji = Instantiate(
             emojiPrefab,

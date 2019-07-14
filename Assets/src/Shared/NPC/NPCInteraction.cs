@@ -9,7 +9,7 @@ public class NPCInteraction : MonoBehaviour
     public string dialoguePath;
 
     private void OnTriggerStay(Collider other) {
-        if (Input.GetButtonDown("A") && other.tag == "Player") {
+        if (Input.GetButtonDown("Interact") && other.tag == "Player") {
             this.interaction();
         }
     }

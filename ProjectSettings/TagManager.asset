@@ -42,3 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Emoji Text
+    uniqueID: 3619658729
+    locked: 0
+  - name: Emoji Dialoguebox
+    uniqueID: 2907809625
+    locked: 0
